@@ -1,0 +1,57 @@
+const { Client, GatewayIntentBits, EmbedBuilder, PermissionsBitField, Permissions } = require('discord.js');
+const prefix = '+';
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
+});
+client.on("ready", () => {
+  console.log("bot dang hoat dong!");
+  client.user.setActivity(`GAME`, { type: "PLAYING" })
+})
+// CÂU LỆNH //
+client.on("messageCreate", (message) => {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  const args = message.content.slice(prefix.length).split(/ +/);
+  const command = args.shift().toLowerCase();
+  const messageArray = message.content.split(" ");
+  const argument = messageArray.slice(1);
+  const cmd = messageArray[0];
+
+  if (command === 'lol') {
+    message.reply("https://discord.gg/w8XKYfnkHA")
+  }
+  if (command === 'test') {
+    message.channel.send("phương thểu năng")
+  }
+})
+// Câu thường //
+client.on("messageCreate", (message) => {
+  if (message.content == "tuấn anh đẹp zai") {
+    console.log("chạy đc");
+    message.channel.send("**ĐÚNG VẬY**")
+  }
+  if (message.content === "embed") {
+    console.log("chạy đc");
+    const embed1 = new EmbedBuilder()
+      .setTitle("Valorant rank")
+      .setDescription("click this <#1043568686314827817>")
+
+    message.channel.send({ embeds: [embed1] })
+  }
+  if (message.content === "+chill") {
+    console.log("chạy đc");
+    const chill = new EmbedBuilder()
+      .setTitle("Vào Đây Để Chill")
+      .setDescription("**Bấm vào đây** <#1010147750433787955>")
+    message.channel.send({ embeds: [chill] })
+  }
+
+  if (message.content === "phương đâu?") {
+    console.log("chạy đc");
+    message.channel.send(`<@985435143143555073> đây`)
+  }
+  if (message.content === "hòn đâu") {
+    message.channel.send(`<@906062719810146354>`)
+  }
+})
+client.login("MMTA0Mzc0NjIyNDU3MTk0OTE1MQ.GBTUww.Ru8L0LnOa5WRyWkhxPMmfbbcSZSSU_bn23qpaw")
